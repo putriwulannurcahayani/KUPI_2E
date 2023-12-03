@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\signup;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -18,12 +18,12 @@ class AuthController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'nama_usaha' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required    |email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
             
         ]);
 
-        signup::create([
+        User::create([
             'name' => $request->name,
             'nama_usaha' => $request->nama_usaha,
             'email' => $request->email,

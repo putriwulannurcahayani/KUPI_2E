@@ -17,16 +17,16 @@ class loginController extends Controller
     public function login(Request $request)
     {
         $validate = $request->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($validate)) {
+        if (Auth::attempt($validate)) { 
             $request->session()->regenerate();
             return redirect()->intended('/dashboard');
         }
 
-        return back()->with("loginError", "Email Atau Password Salah");
+        return back()->with("errorLogin", "Email Atau Password Salah");
     }
 }
 
